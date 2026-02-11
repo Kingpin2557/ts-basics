@@ -87,7 +87,7 @@ export const basicTypes = {
 
     const redDevils = new Team("Red Devils");
     console.log(redDevils.teamName);
-    redDevils.score("30");
+    redDevils.score();
 
     console.log(Types.Quiz);
 
@@ -98,5 +98,13 @@ export const basicTypes = {
     };
 
     createContent(Types.Video);
+
+    const outputInput = <TEST>(name: TEST): TEST => {
+      console.log(name);
+      return name;
+    };
+
+    type Animal = string;
+    outputInput<Animal>("lion");
   },
 };
