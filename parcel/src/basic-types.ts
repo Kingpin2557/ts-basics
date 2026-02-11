@@ -1,3 +1,5 @@
+import { Team } from "./team";
+import { Job, Types } from "./enum";
 export const basicTypes = {
   runDemos: () => {
     console.log("running the demos");
@@ -7,11 +9,6 @@ export const basicTypes = {
     const myAge: number = 23;
     const list: number[] = [1, 2, 3];
     const tuple: [number, string, number] = [1, "2", 3];
-    enum Job {
-      WebDev,
-      WebDesigner,
-      PM,
-    }
 
     const myProfession: Job = Job.WebDev;
     console.log(myProfession);
@@ -24,5 +21,77 @@ export const basicTypes = {
 
     let newNameTwo = newName;
     newNameTwo = "30";
+
+    let myOtherName: string | number | boolean = "string";
+    myOtherName = 6;
+    myOtherName = true;
+
+    let myOtherNewName = myOtherName;
+    myOtherNewName = true;
+
+    let dog: string = "Sammy";
+    dog = "Lucie";
+
+    interface Person {
+      name: string;
+      age?: number;
+    }
+
+    const sayName = (person: Person): Person => {
+      const { name, age } = person;
+      const out = `Your name is ${name} and age is ${age}`;
+      console.log(out);
+      return person;
+    };
+
+    sayName({
+      name: "Tim",
+    });
+
+    interface OtherPerson extends Person {
+      description: string;
+    }
+
+    interface OtherPerson {
+      isHungry: boolean;
+      doSomething: (name: string) => void;
+    }
+    const otherPerson: OtherPerson = {
+      description: "my desc",
+      name: "Lode",
+      isHungry: true,
+      doSomething: (name: string) => {
+        console.log("test");
+      },
+    };
+
+    //types
+
+    type Hungry = boolean;
+    type Greeting = (name: string) => void;
+
+    type NewPerson = {
+      name: string;
+      age: number;
+      isHungry: boolean;
+    };
+
+    type Hero = {
+      isAHero: boolean;
+    };
+
+    type HeroPerson = NewPerson | Hero;
+
+    const heroPerson: HeroPerson = {
+      isAHero: true,
+      name: "test",
+      age: 15,
+    };
+
+    const redDevils = new Team("Red Devils");
+    console.log(redDevils.teamName);
+    redDevils.score("30");
+
+    console.log(Types.Quiz);
   },
 };

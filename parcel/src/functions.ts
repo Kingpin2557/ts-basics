@@ -9,5 +9,11 @@ export const functions = {
     };
 
     sayWord("dit is een test", "test", 2);
+
+    const makeMargin = (x: string | number) => {
+      return `margin: ${x}px;`;
+    };
+
+    console.log(makeMargin(50));
   },
 };
