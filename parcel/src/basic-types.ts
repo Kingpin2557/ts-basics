@@ -1,5 +1,7 @@
 import { Team } from "./team";
 import { Job, Types } from "./enum";
+import { Person } from "./interfaces";
+
 export const basicTypes = {
   runDemos: () => {
     console.log("running the demos");
@@ -31,11 +33,6 @@ export const basicTypes = {
 
     let dog: string = "Sammy";
     dog = "Lucie";
-
-    interface Person {
-      name: string;
-      age?: number;
-    }
 
     const sayName = (person: Person): Person => {
       const { name, age } = person;
@@ -93,5 +90,13 @@ export const basicTypes = {
     redDevils.score("30");
 
     console.log(Types.Quiz);
+
+    const createContent = (type: Types) => {
+      if (type === Types.Video) {
+        console.log("Create a video");
+      }
+    };
+
+    createContent(Types.Video);
   },
 };
