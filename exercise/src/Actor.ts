@@ -29,13 +29,11 @@ export const Actor = class Actor implements Person {
       age: this.age,
     };
   }
-
   askMovies(): { arrMovies: Movie[] } {
     return {
       arrMovies: this.arrMovie,
     };
   }
-
   editMovie(id: number, movie: Movie): void {
     this.arrMovie = this.arrMovie.map((item) => {
       if (item.id === id) {
@@ -46,7 +44,6 @@ export const Actor = class Actor implements Person {
 
     console.log("Updated Array:", this.arrMovie);
   }
-
   addMovie(movie: Movie): void {
     if (movie) {
       this.arrMovie.push({
