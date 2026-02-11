@@ -21,7 +21,6 @@ export const basicTypes = {
 
     let newName = "William";
     newName = "Shakespeare";
-    newName = 10;
 
     let newNameTwo = newName;
     newNameTwo = "30";
