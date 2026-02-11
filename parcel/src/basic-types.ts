@@ -147,5 +147,8 @@ export const basicTypes = {
         animal.swim();
       }
     };
+
+    const isFish = (animal: Animal): animal is Fish => "swim" in animal;
+    if (isFish(nemo)) nemo.swim();
   },
 };
