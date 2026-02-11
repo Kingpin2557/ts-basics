@@ -1,6 +1,7 @@
 import { Team } from "./team";
 import { Job, Types } from "./enum";
 import { Person } from "./interfaces";
+import { Actor } from "./Actor";
 
 export const basicTypes = {
   runDemos: () => {
@@ -99,12 +100,52 @@ export const basicTypes = {
 
     createContent(Types.Video);
 
-    const outputInput = <TEST>(name: TEST): TEST => {
+    const outputInput = <T>(name: T): T => {
       console.log(name);
       return name;
     };
 
-    type Animal = string;
-    outputInput<Animal>("lion");
+    type AnimalOutput = string;
+    outputInput<AnimalOutput>("lion");
+
+    let SeanConnery: Person = new Actor("tim");
+    const fake = {
+      name: "Tim",
+      role: "actor",
+    };
+    SeanConnery = fake;
+
+    interface Fish {
+      name: string;
+      swim: () => void;
+    }
+
+    interface Bird {
+      name: string;
+      fly: () => void;
+    }
+
+    type Animal = Fish | Bird;
+    const nemo: Animal = {
+      name: "Nemo",
+      swim: () => console.log("Found Nemo!"),
+    };
+
+    const phoenix: Animal = {
+      name: "Phoenix",
+      fly: () => console.log("Rise of the Phoenix!"),
+    };
+
+    const actLikeAnAnimal = (animal: Animal) => {
+      const incomingAnimal = animal as Fish;
+
+      if (incomingAnimal.swim) {
+        incomingAnimal.swim();
+      }
+
+      if ("swim" in animal) {
+        animal.swim();
+      }
+    };
   },
 };
