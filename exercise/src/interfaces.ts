@@ -1,11 +1,13 @@
 import { Genre } from "./enum";
 
 export interface Person {
-  name: string;
+  firstname: string;
+  lastname: string;
   age?: number;
 }
 
 export interface Movie {
+  id?: number;
   title: string;
   year: Date;
   genre: Genre;

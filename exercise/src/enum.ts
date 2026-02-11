@@ -1,5 +1,5 @@
 export enum Genre {
-  Horror,
-  Fantasy,
-  ScienceFiction,
+  Horror = "Horror",
+  Fantasy = "Fantasy",
+  ScienceFiction = "ScienceFiction",
 }

@@ -1,14 +1,20 @@
 import { Actor } from "./Actor";
 import { Genre } from "./enum";
 
-const actor = new Actor("Lode", 23);
-actor.askName();
-// actor.addMovie({
-//   title: "Here is a movie title",
-//   year: new Date(),
-//   genre: Genre.Fantasy,
-// });
+const actor = new Actor("Random", "Name", 23);
+actor.logActor();
 
+const actorName = actor.askActor();
+console.log(actorName);
+
+const actorMovies = actor.askMovies();
+console.log(actorMovies);
+
+actor.addMovie({
+  title: "Here is a movie title",
+  year: new Date(),
+  genre: Genre.Fantasy,
+});
 actor.addMovies([
   {
     title: "The Midnight Echo",
@@ -30,9 +36,10 @@ actor.addMovies([
     year: new Date("2025-02-11"),
     genre: Genre.Horror,
   },
-  {
-    title: "Nebula Drifter",
-    year: new Date("2022-08-14"),
-    genre: Genre.ScienceFiction,
-  },
 ]);
+
+actor.editMovie(2, {
+  title: "Random title",
+  year: new Date("2025-02-11"),
+  genre: Genre.Horror,
+});

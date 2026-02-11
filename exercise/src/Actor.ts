@@ -1,41 +1,72 @@
 import { Movie, Person } from "./interfaces";
 
 export const Actor = class Actor implements Person {
-  name: string;
+  firstname: string;
+  lastname: string;
   age?: number;
   private arrMovie: Movie[];
 
-  constructor(name: string, age?: number, arrMovie: Movie[] = []) {
-    this.name = name;
+  constructor(
+    firstname: string,
+    lastname: string,
+    age?: number,
+    arrMovie: Movie[] = [],
+  ) {
+    this.firstname = firstname;
+    this.lastname = lastname;
     this.age = age;
     this.arrMovie = arrMovie;
   }
 
-  askName(): void {
-    let output: string;
-
-    output = `Hello, My name is ${this.name}`;
-
-    if (this.age) {
-      output += ` with age of ${this.age}`;
-    }
-
-    console.log(output);
+  private createIds(offset = 0): number {
+    return this.arrMovie.length + offset + 1;
   }
 
-  addMovie(movie: Movie) {
+  askActor(): Person {
+    return {
+      firstname: this.firstname,
+      lastname: this.lastname,
+      age: this.age,
+    };
+  }
+
+  askMovies(): { arrMovies: Movie[] } {
+    return {
+      arrMovies: this.arrMovie,
+    };
+  }
+
+  editMovie(id: number, movie: Movie): void {
+    this.arrMovie = this.arrMovie.map((item) => {
+      if (item.id === id) {
+        return { ...movie, id };
+      }
+      return item;
+    });
+
+    console.log("Updated Array:", this.arrMovie);
+  }
+
+  addMovie(movie: Movie): void {
     if (movie) {
-      this.arrMovie.push(movie);
+      this.arrMovie.push({
+        id: this.createIds(),
+        ...movie,
+      });
     }
-
-    console.log(this.arrMovie);
   }
-
-  addMovies(arrMovie: Movie[]) {
+  addMovies(arrMovie: Movie[]): void {
     if (arrMovie) {
-      this.arrMovie.concat(arrMovie);
+      const preparedMovies = arrMovie.map((movie, index) => {
+        return {
+          id: this.createIds(index),
+          ...movie,
+        };
+      });
+      this.arrMovie.push(...preparedMovies);
     }
-
-    console.log(arrMovie);
+  }
+  logActor(): void {
+    console.log("Full Actor Object:", this);
   }
 };
